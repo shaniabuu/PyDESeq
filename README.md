@@ -26,12 +26,12 @@ pip install --user pandas numpy scipy matplotlib
 
 pydeseq can be installed with the following commands:
 ```
-git clone .....
+git clone https://github.com/shaniabuu/PyDESeq.git
 cd PyDESeq/pydeseq
 
 ```
 
-Typing `./pydeseq.py --help` should show a useful message and can be done to see if the install was successfull. 
+Typing `./pydeseq.py --help` should show a useful message and can be run to see if the install was successfull. 
 
 <a name="usage"></a>
 ## Basic Usage
