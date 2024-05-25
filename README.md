@@ -44,12 +44,25 @@ To run `./pydeseq.py` on our test example files:
 ./pydeseq.py [-h] -c {CONTROLS ...} -t {TREATMENTS ...} -g {m,h} [-p {PVALUE_THRESHOLD}] [-o {OUTPUT_DIR}]
 ```
 
-The code and the plots and csv file generated from my test 
 
 This should output:
 
 ```
+                  gene_name  log2FoldChange        pvalue
+gene_id
+ENSMUSG00000081664   Gm15544      -15.609669  9.629650e-33
+ENSMUSG00000048251    Bcl11b        0.807332  1.003089e-32
+ENSMUSG00000034987      Hrh2       -0.678056  1.504633e-32
+ENSMUSG00000017417    Plxdc1        0.321927  3.530872e-32
+ENSMUSG00000026730      Pter        0.654322  1.116894e-04
+ENSMUSG00000033174      Mgll        0.990863  1.729810e-04
+ENSMUSG00000021136     Smoc1        0.152529  1.964658e-04
+ENSMUSG00000020261   Slc36a1        0.423822  2.933470e-04
+ENSMUSG00000038422     Hdhd3        0.728353  3.483287e-04
+ENSMUSG00000032667      Pon2        0.220157  3.778721e-04
+Number of differentially expressed genes (p-value > 0.05): 19692
 ```
+
 
 
 <a name="options"></a>
@@ -70,6 +83,14 @@ Other additional options are:
 ### Inupt files
 
 ### Output files
+#### `differential_expression_results.csv`
+A comma-separated value (.csv) file with the differential expression analysis results stored in the following columns:
+```
+gene_id      log2FoldChange    pvalue
+```
+column 1: `gene_id` stores the gene ids for the identified differentially expressed genes.
+column 2: `log2FoldChange` stores the values of the log2 fold change in expression of the gene between control(s) and treatment(s).
+column 3: `p-value` stores the p-value for each gene where the null hypothesis is that that the gene expression is the same in control(s) vs. treatment(s). 
 
 
 <a name="credit"></a>
