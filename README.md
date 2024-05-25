@@ -3,7 +3,7 @@
 ## Introduction
 The goal of this project is to build a tool in Python that calculates the log2 fold change values and p-values from RESM and TPM results to perform differential expression analysis of two datasets, control vs. treatment. Additionally, the tool will generate a volcano plot for differential expression with log2 fold change values as the x-axis and the -log10 p-value as the y-axis and prints out the top 10 most differentially expressed genes. 
 
-[Install Instructions](#install) | [Basic Usage](#usage) | [pydeseq Options](#options) | [File format](#format) | [Constributors](#credit)
+[Install Instructions](#install) | [Basic Usage](#usage) | [pydeseq Options](#options) | [File formats](#format) | [Contributors](#credit)
 
 <a name="install"></a>
 ## Install Instructions
