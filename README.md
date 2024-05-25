@@ -78,7 +78,7 @@ Other additional options are:
 <a name="format"></a>
 ## File formats
 
-### Inupt files for test data
+### Inupt files (from test data)
 #### `Chow_Rep1.txt Chow_Rep2.txt Chow_Rep3.txt`
 
 Text files for the replicates of the control samples of mice fed with a Chow diet. They contain two columns :
@@ -88,6 +88,7 @@ gene_id      FPKM
 column 1: `gene_id` stores the gene ids for the sequenced genes
 
 column 2: `FPKM` stores the FPKM (fragments per kilobase of transcript per million mapped reads) values of the sequenced genes.
+
 
 #### `HFD_Rep1.txt HFD_Rep2.txt HFD_Rep3.txt`
 
@@ -99,6 +100,7 @@ column 1: `gene_id` stores the gene ids for the sequenced genes
 
 column 2: `FPKM` stores the FPKM (fragments per kilobase of transcript per million mapped reads) values of the sequenced genes.
 
+Control and Treatment files that are used should contain just two tab-delimited columns, the first for gene ids and the second for FPKM values. 
 
 ### Output files
 #### `differential_expression_results.csv`
