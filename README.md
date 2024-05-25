@@ -67,8 +67,8 @@ Along with the files `differentl_expression_results.csv` and `volcano_plot.png`.
 ## pydeseq options
 The required inputs for `./pydeseq.py` are:
 - `-c`, `--controls`: Control file(s). 
-- `t`, `--treatments`: Treetment file(s).
-- `-g`, `--genome`: Genome type. `m` for mouse, `h` for human
+- `t`, `--treatments`: Treatment file(s).
+- `-g`, `--genome`: Genome type. Use `m` for mouse, `h` for human
 
 Other additional options are:
 - `-h`, `--help`: Shows the help message and exits
