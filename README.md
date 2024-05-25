@@ -41,11 +41,10 @@ The basic usage of `./pydeseq.py` to process control and treatment files to calc
 ```
 To run `./pydeseq.py` on our test example files:
 ```
-./pydeseq.py [-h] -c {CONTROLS ...} -t {TREATMENTS ...} -g {m,h} [-p {PVALUE_THRESHOLD}] [-o {OUTPUT_DIR}]
+./pydeseq.py -c ../data/lab_data/Chow_Rep1.txt ../data/lab_data/Chow_Rep2.txt ../data/lab_data/Chow_Rep3.txt -t ../data/lab_data/HFD_Rep1.txt ../data/lab_data/HFD_Rep2.txt ../data/lab_data/HFD_Rep3.txt -g m -p 0.05
 ```
 
-
-This should output:
+This should produce the following output:
 
 ```
                   gene_name  log2FoldChange        pvalue
@@ -62,8 +61,7 @@ ENSMUSG00000038422     Hdhd3        0.728353  3.483287e-04
 ENSMUSG00000032667      Pon2        0.220157  3.778721e-04
 Number of differentially expressed genes (p-value > 0.05): 19692
 ```
-
-
+Along with the files `differentl_expression_results.csv` and `volcano_plot.png`. See [Output Files](#output-files) in [File Formats](#file-formats) for more details
 
 <a name="options"></a>
 ## pydeseq options
@@ -80,7 +78,27 @@ Other additional options are:
 <a name="format"></a>
 ## File formats
 
-### Inupt files
+### Inupt files for test data
+#### `Chow_Rep1.txt Chow_Rep2.txt Chow_Rep3.txt`
+
+Text files for the replicates of the control samples of mice fed with a Chow diet. They contain two columns :
+```
+gene_id      FPKM
+```
+column 1: `gene_id` stores the gene ids for the sequenced genes
+
+column 2: `FPKM` stores the FPKM (fragments per kilobase of transcript per million mapped reads) values of the sequenced genes.
+
+#### `HFD_Rep1.txt HFD_Rep2.txt HFD_Rep3.txt`
+
+Text files for the replicates of the treatment samples of mice fed with a high fat diet. They contain two columns :
+```
+gene_id      FPKM
+```
+column 1: `gene_id` stores the gene ids for the sequenced genes
+
+column 2: `FPKM` stores the FPKM (fragments per kilobase of transcript per million mapped reads) values of the sequenced genes.
+
 
 ### Output files
 #### `differential_expression_results.csv`
@@ -89,8 +107,13 @@ A comma-separated value (.csv) file with the differential expression analysis re
 gene_id      log2FoldChange    pvalue
 ```
 column 1: `gene_id` stores the gene ids for the identified differentially expressed genes.
+
 column 2: `log2FoldChange` stores the values of the log2 fold change in expression of the gene between control(s) and treatment(s).
+
 column 3: `p-value` stores the p-value for each gene where the null hypothesis is that that the gene expression is the same in control(s) vs. treatment(s). 
+
+#### `volcano_plot.png`
+A png image of the generated volcano plot with the inputted p-value threshold. A volcano plot is only generated if a p-value threshold is given. The red dots represent the differentially expressed genes with a p-value less than the inputted threshold, while the black dots represent the non-differentially expressed genes. The 10 genes are labeled with their gene names. 
 
 
 <a name="credit"></a>
