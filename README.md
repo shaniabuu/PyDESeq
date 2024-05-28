@@ -46,11 +46,11 @@ Typing `pydeseq --help` should show a useful message and can be run to see if th
 ## Basic Usage
 The basic usage of `./pydeseq.py` to process control and treatment files to calculate differential gene expression is:
 ```
-./pydeseq.py [-h] -c {CONTROLS ...} -t {TREATMENTS ...} -g {m,h} [-p {PVALUE_THRESHOLD}] [-o {OUTPUT_DIR}]
+pydeseq [-h] -c {CONTROLS ...} -t {TREATMENTS ...} -g {m,h} [-p {PVALUE_THRESHOLD}] [-o {OUTPUT_DIR}]
 ```
-To run `./pydeseq.py` on our test example files:
+To run `pydeseq` on our test example files:
 ```
-./pydeseq.py -c ../data/lab_data/Chow_Rep1.txt ../data/lab_data/Chow_Rep2.txt ../data/lab_data/Chow_Rep3.txt -t ../data/lab_data/HFD_Rep1.txt ../data/lab_data/HFD_Rep2.txt ../data/lab_data/HFD_Rep3.txt -g m -p 0.05
+pydeseq -c ../data/lab_data/Chow_Rep1.txt ../data/lab_data/Chow_Rep2.txt ../data/lab_data/Chow_Rep3.txt -t ../data/lab_data/HFD_Rep1.txt ../data/lab_data/HFD_Rep2.txt ../data/lab_data/HFD_Rep3.txt -g m -p 0.05
 ```
 
 This should produce the following output:
@@ -74,7 +74,7 @@ Along with the files `differential_expression_results.csv` and `volcano_plot.png
 
 <a name="options"></a>
 ## pydeseq options
-The required inputs for `./pydeseq.py` are:
+The required inputs for `pydeseq` are:
 - `-c`, `--controls`: Control file(s). 
 - `t`, `--treatments`: Treatment file(s).
 - `-g`, `--genome`: Genome type. Use `m` for mouse, `h` for human
