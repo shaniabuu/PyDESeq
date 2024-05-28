@@ -30,14 +30,17 @@ pip install --user pandas numpy scipy matplotlib
 ```
 git clone https://github.com/shaniabuu/PyDESeq.git
 cd PyDESeq
+pip install .
 ```
-To make the script executable:
+Note: if you do not have root access, you can run the command above with additional options to install locally:
 ```
-chmod +x pydeseq/pydeseq
+pip install . --user
 ```
-To run `pydeseq` sucessfully, there are three options:
-- Option 1: Specify the path to the code pydeseq, e.g. `chmod +x pydeseq/pydeseq`
-Typing `./pydeseq.py --help` should show a useful message and can be run to see if the install was successfull. 
+To run `pydeseq` sucessfully, you working directory should be in the PyDESeq directory, otherwise, you might need to add this directory to your PATH by running:
+```
+export PATH=$PATH:~/.local/bin
+```
+Typing `pydeseq --help` should show a useful message and can be run to see if the install was successfull. 
 
 <a name="usage"></a>
 ## Basic Usage
