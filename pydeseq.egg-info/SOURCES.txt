@@ -1,0 +1,8 @@
+README.md
+setup.py
+pydeseq.egg-info/PKG-INFO
+pydeseq.egg-info/SOURCES.txt
+pydeseq.egg-info/dependency_links.txt
+pydeseq.egg-info/entry_points.txt
+pydeseq.egg-info/requires.txt
+pydeseq.egg-info/top_level.txt
