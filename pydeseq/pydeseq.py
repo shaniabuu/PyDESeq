@@ -76,47 +76,53 @@ def main():
     os.makedirs(args.output_dir, exist_ok=True)
     output_file = os.path.join(args.output_dir, 'differential_expression_results.csv')
     combined_df.to_csv(output_file, columns=['log2FoldChange', 'pvalue'])
+    
 
     combined_df = combined_df.join(gene_names, on='gene_id')
     combined_df_nonzero_pvalue = combined_df[combined_df['pvalue'] > 0]
+    
+    pseudocount_pvalue = 1e-10
+    # Create -log10(pvalue) column
+    combined_df_nonzero_pvalue['-log10(pvalue)'] = -np.log10(combined_df_nonzero_pvalue['pvalue'] + pseudocount_pvalue)
 
-    # Print top 10 genes with the smallest non-zero p-values
-    top_genes_nonzero_pvalue = combined_df_nonzero_pvalue.nsmallest(10, 'pvalue')
-    print(top_genes_nonzero_pvalue[['gene_name', 'log2FoldChange', 'pvalue']])
+    # Filter out extreme log2 fold change and p-values
+    filtered_combined_df_nonzero_pvalue = combined_df_nonzero_pvalue[
+        (combined_df_nonzero_pvalue['log2FoldChange'].between(-10, 10)) &
+        (combined_df_nonzero_pvalue['-log10(pvalue)'] <= 9)
+    ]
 
-    # Print number of differentially expressed genes
-    num_diff_expr_genes = combined_df[combined_df['pvalue'] > 0.05].shape[0]
-    print("Number of differentially expressed genes (p-value > 0.05):", num_diff_expr_genes)
+    # Print filtered top 10 genes with the smallest non-zero p-values
+    filtered_top_genes_nonzero_pvalue = filtered_combined_df_nonzero_pvalue.nsmallest(10, 'pvalue')
+    print(filtered_top_genes_nonzero_pvalue[['gene_name', 'log2FoldChange', 'pvalue']])
 
-    # Create volcano plot if p-value threshold is specified and p-value column exists
-    if args.pvalue_threshold and 'pvalue' in combined_df.columns:
-        # Add a pseudocount to p-values to avoid log10(0)
-        pseudocount_pvalue = 1e-10
-        combined_df['-log10(pvalue)'] = -np.log10(combined_df['pvalue'] + pseudocount_pvalue)
-        plt.scatter(combined_df['log2FoldChange'], combined_df['-log10(pvalue)'], color='black')
+    # Print number of differentially expressed genes after filtering
+    num_filtered_diff_expr_genes = filtered_combined_df_nonzero_pvalue[filtered_combined_df_nonzero_pvalue['pvalue'] > 0.05].shape[0]
+    print("Number of differentially expressed genes after filtering (p-value > 0.05):", num_filtered_diff_expr_genes)
+
+    # Create filtered volcano plot if p-value threshold is specified and p-value column exists
+    if args.pvalue_threshold:
+        plt.scatter(filtered_combined_df_nonzero_pvalue['log2FoldChange'], filtered_combined_df_nonzero_pvalue['-log10(pvalue)'], color='black')
 
         # Highlight significant points
-        significant = combined_df['pvalue'] < args.pvalue_threshold
-        plt.scatter(combined_df.loc[significant, 'log2FoldChange'],
-                    combined_df.loc[significant, '-log10(pvalue)'],
+        significant = filtered_combined_df_nonzero_pvalue['pvalue'] < args.pvalue_threshold
+        plt.scatter(filtered_combined_df_nonzero_pvalue.loc[significant, 'log2FoldChange'],
+                    filtered_combined_df_nonzero_pvalue.loc[significant, '-log10(pvalue)'],
                     color='red')
 
         # Add horizontal threshold line
         plt.axhline(-np.log10(args.pvalue_threshold), linestyle='--', color='gray')
 
         # Label top 10 genes
-        if '-log10(pvalue)' in combined_df.columns:
-            top_genes_to_label = top_genes_nonzero_pvalue.copy()
-            top_genes_to_label['-log10(pvalue)'] = combined_df.loc[top_genes_nonzero_pvalue.index, '-log10(pvalue)']
-            for _, row in top_genes_to_label.iterrows():
-                plt.text(row['log2FoldChange'], row['-log10(pvalue)'], row['gene_name'])
+        for _, row in filtered_top_genes_nonzero_pvalue.iterrows():
+            plt.text(row['log2FoldChange'], row['-log10(pvalue)'], row['gene_name'])
 
         plt.xlabel('log2 Fold Change')
         plt.ylabel('-log10(p-value)')
-        plt.title('Volcano Plot')
+        plt.title('Filtered Volcano Plot')
         # Adjust figure size
         plt.gcf().set_size_inches(12, 6)  # Set width to 12 inches and height to 6 inches
         plt.savefig(os.path.join(args.output_dir, 'volcano_plot.png'), bbox_inches='tight')
 
 if __name__ == '__main__':
     main()
+
