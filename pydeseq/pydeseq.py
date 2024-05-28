@@ -6,12 +6,24 @@ import numpy as np
 from scipy.stats import ttest_rel
 import os
 import matplotlib.pyplot as plt
+import warnings
+
+# Suppress specific RuntimeWarning from scipy.stats
+warnings.filterwarnings("ignore", category=RuntimeWarning, message="Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.")
+
 
 def load_gene_names(file_path):
     return pd.read_csv(file_path, sep='\t', header=None, names=['gene_id', 'gene_name'], index_col='gene_id')
 
 def read_fpkm_file(file_path):
-    return pd.read_csv(file_path, sep='\t')
+    try:
+        df = pd.read_csv(file_path, sep='\t')
+        if 'gene_id' not in df.columns or 'FPKM' not in df.columns:
+            raise ValueError(f"File {file_path} does not contain required columns 'gene_id' and 'FPKM'.")
+        return df
+    except Exception as e:
+        print(f"Error reading file {file_path}: {e}")
+        exit(1)
 
 def calculate_log2_fold_change(ctrl_avg, treat_avg, pseudocount=1e-6):
     return np.log2((treat_avg + pseudocount) / (ctrl_avg + pseudocount))
@@ -19,7 +31,7 @@ def calculate_log2_fold_change(ctrl_avg, treat_avg, pseudocount=1e-6):
 def main():
     parser = argparse.ArgumentParser(
         description="Process control and treatment files to calculate differential gene expression.",
-        usage="pydeseq.py [-h] -c {CONTROLS ...} -t {TREATMENTS ...} -g {m,h} [-p {PVALUE_THRESHOLD}] [-o {OUTPUT_DIR}]"
+        usage="pydeseq [-h] -c {CONTROLS ...} -t {TREATMENTS ...} -g {m,h} [-p {PVALUE_THRESHOLD}] [-o {OUTPUT_DIR}]"
     )
     parser.add_argument('-c', '--controls', nargs='+', required=True, help='Control file(s)')
     parser.add_argument('-t', '--treatments', nargs='+', required=True, help='Treatment file(s)')
@@ -28,6 +40,12 @@ def main():
     parser.add_argument('-o', '--output_dir', default='.', help='Output directory')
 
     args = parser.parse_args()
+
+    # Validate inputs
+    if not args.controls or not args.treatments:
+        parser.error("Both control and treatment files must be provided. Use -h for help.")
+    if args.genome not in ['m', 'h']:
+        parser.error("Invalid genome type. Use -h for help.")
 
     # Load gene names
     gene_name_file = 'GRCm38.75.gene_names' if args.genome == 'm' else 'hg38.gene_names'
@@ -100,6 +118,5 @@ def main():
         plt.gcf().set_size_inches(12, 6)  # Set width to 12 inches and height to 6 inches
         plt.savefig(os.path.join(args.output_dir, 'volcano_plot.png'), bbox_inches='tight')
 
-        
 if __name__ == '__main__':
     main()
