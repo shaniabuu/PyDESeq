@@ -3,17 +3,16 @@
 ## Introduction
 The goal of this project is to build a tool in Python that calculates the log2 fold change values and p-values from RESM and TPM results to perform differential expression analysis of two datasets, control vs. treatment. Additionally, the tool will generate a volcano plot for differential expression with log2 fold change values as the x-axis and the -log10 p-value as the y-axis and prints out the top 10 most differentially expressed genes. 
 
-[Install Instructions](#install) | [Basic Usage](#usage) | [pydeseq Options](#options) | [File formats](#format) | [Contributors](#credit)
-
-<a name="install"></a>
-## Install Instructions
-
-`pydeseq` requires the following python libraries to be installed:
-
-pandas
-numpy 
-scipy
-matplotlib
+[Prerequisites](#prerequisites) | [Install Instructions](#install) | [Basic Usage](#usage) | [pydeseq Options](#options) | [File formats](#format) | [Contributors](#credit)
+<a name="prerequisites"></a>
+## Prerequisites
+`pydeseq` requires:
+- Python 3.xx
+- Python packages:
+  - pandas
+  - numpy
+  - scipy
+  - matplotlib
 
 If these packages are not yet installed, use the `pip` command:
 ```
@@ -24,11 +23,17 @@ If you do not have root access, you can run the command above with the additiona
 pip install --user pandas numpy scipy matplotlib
 ```
 
+<a name="install"></a>
+## Install Instructions
+
 pydeseq can be installed with the following commands:
 ```
 git clone https://github.com/shaniabuu/PyDESeq.git
-cd PyDESeq/pydeseq
-
+cd PyDESeq
+```
+To make the script executable:
+```
+chmod +x pydeseq/pydeseq
 ```
 
 Typing `./pydeseq.py --help` should show a useful message and can be run to see if the install was successfull. 
