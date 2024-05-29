@@ -50,9 +50,9 @@ pydeseq [-h] -c {CONTROLS ...} -t {TREATMENTS ...} -g {GENE_NAME_FILE} -p {PVALU
 ```
 ### pydeseq options
 The required inputs for `pydeseq` are:
-- `-c`, `--controls`: Control file. See [File Formats](#file-formats) for more details.
-- `-t`, `--treatments`: Treatment file. See [File Formats](#file-formats) for more details.
-- `-g`, `--gene_name_file`: Gene name file, for converting gene IDs to gene names. See [File Formats](#file-formats) for more details.
+- `-c`, `--controls`: Control file. See [Input File Formats](#format) for more details.
+- `-t`, `--treatments`: Treatment file. See [Input File Formats](#format) for more details.
+- `-g`, `--gene_name_file`: Gene name file, for converting gene IDs to gene names. See [Input File Formats](#format) for more details.
 - `-p`, `--pvalue_threshold`: Sets p-value threshold for the output of the number of differentially expressed genes and the volcano plot.
 
 Other additional options are:
@@ -72,7 +72,8 @@ column 1: `gene_id` stores the gene ids for the sequenced genes.
 column 2: `FPKM` stores the FPKM (fragments per kilobase of transcript per million mapped reads) values of the sequenced genes.
 
 Note: There should be two or more files for control and treatment files as replicates for the calculation of p-values.
-See text files in [a link](https://github.com/shaniabuu/PyDESeq/tree/main/data/lab_data) for example.
+
+See text files in [/data/lab_data](https://github.com/shaniabuu/PyDESeq/tree/main/data/lab_data) for example.
 
 ### Gene name file
 The gene name file that is used should contain just two tab-delimited columns, the first for gene ids and the second for gene names:
@@ -82,10 +83,8 @@ gene_id      gene_names
 column 1: `gene_id` that includes those in control and treatment files.
 
 column 2: `gene_names` for the readable gene names for each gene id.
-See text files in [a link](https://github.com/shaniabuu/PyDESeq/tree/main/data/lab_data) for example.
 
-
-Along with the files `differential_expression_results.csv` and `volcano_plot.png`. See [Output Files](#output-files) in [File Formats](#file-formats) for more details
+See GRCm38.75.gene_names in [/data/lab_data](https://github.com/shaniabuu/PyDESeq/tree/main/data/lab_data) for example.
 
 <a name="output"></a>
 ## Output files
@@ -99,6 +98,8 @@ column 1: `gene_id` stores the gene ids for the identified differentially expres
 column 2: `log2FoldChange` stores the values of the log2 fold change in expression of the gene between control(s) and treatment(s).
 
 column 3: `p-value` stores the p-value for each gene where the null hypothesis is that that the gene expression is the same in control(s) vs. treatment(s). 
+
+Along with the files `differential_expression_results.csv` and `volcano_plot.png`. See [Output Files](#output-files) in [File Formats](#file-formats) for more details
 
 #### `volcano_plot.png`
 A png image of the generated volcano plot with the inputted p-value threshold. A volcano plot is only generated if a p-value threshold is given. The red dots represent the differentially expressed genes with a p-value less than the inputted threshold, while the black dots represent the non-differentially expressed genes. The 10 genes are labeled with their gene names. 
