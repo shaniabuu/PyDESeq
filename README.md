@@ -88,21 +88,25 @@ See GRCm38.75.gene_names in [/data/lab_data](https://github.com/shaniabuu/PyDESe
 
 <a name="output"></a>
 ## Output files
-### `differential_expression_results.csv`
+### text outputs
+1. Top 10 Genes with the Smallest Non-zero P-values: The script prints the top 10 genes with the smallest non-zero p-values, showing their gene names, log2 fold changes, and p-values.
+2. Number of Differentially Expressed Genes: The script prints the number of differentially expressed genes after filtering with the provided p-value threshold.
+
+### output files
+#### `differential_expression_results.csv`
 A comma-separated value (.csv) file with the differential expression analysis results stored in the following columns:
 ```
-gene_id      log2FoldChange    pvalue
+gene_name      log2FoldChange    pvalue
 ```
-column 1: `gene_id` stores the gene ids for the identified differentially expressed genes.
+column 1: `gene_name` stores the gene names for the identified differentially expressed genes.
 
 column 2: `log2FoldChange` stores the values of the log2 fold change in expression of the gene between control(s) and treatment(s).
 
 column 3: `p-value` stores the p-value for each gene where the null hypothesis is that that the gene expression is the same in control(s) vs. treatment(s). 
 
-Along with the files `differential_expression_results.csv` and `volcano_plot.png`. See [Output Files](#output-files) in [File Formats](#file-formats) for more details
-
 #### `volcano_plot.png`
-A png image of the generated volcano plot with the inputted p-value threshold. A volcano plot is only generated if a p-value threshold is given. The red dots represent the differentially expressed genes with a p-value less than the inputted threshold, while the black dots represent the non-differentially expressed genes. The 10 genes are labeled with their gene names. 
+This image file is a volcano plot of the log2 fold changes vs. -log10(p-values). Genes with p-values below the threshold are highlighted in red. The top 10 genes with the smallest non-zero p-values are labeled.
+
 
 
 <a name="credit"></a>
