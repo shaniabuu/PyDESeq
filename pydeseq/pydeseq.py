@@ -85,7 +85,7 @@ def main():
     ]
 
     # Print filtered top 10 genes with the smallest non-zero p-values
-    filtered_top_genes_nonzero_pvalue = filtered_combined_df_nonzero_pvalue.nsmallest(10, 'pvalue')
+    filtered_top_genes_nonzero_pvalue = filtered_combined_df_nonzero_pvalue.nsmallest(10, 'pvalue').reset_index(drop=True)
     print(filtered_top_genes_nonzero_pvalue[['gene_name', 'log2FoldChange', 'pvalue']])
 
     # Print number of differentially expressed genes after filtering
