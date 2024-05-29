@@ -32,7 +32,7 @@ git clone https://github.com/shaniabuu/PyDESeq.git
 cd PyDESeq
 pip install -e .
 ```
-Note: if you do not have root access, you can run the command above with additional options to install locally:
+If you do not have root access, you can run the `pip install` command above with an additional option to install locally:
 ```
 pip install --user -e .
 ```
