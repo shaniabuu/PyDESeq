@@ -110,7 +110,7 @@ This image file is a volcano plot of the log2 fold changes vs. -log10(p-values).
 <a name="example"></a>
 ## Example and testing
 
-To test the package using [lab data](https://github.com/shaniabuu/PyDESeq/tree/main/data/lab_data):
+- To test the package using [lab data](https://github.com/shaniabuu/PyDESeq/tree/main/data/lab_data):
 ```
 cd PyDESeq
 pydeseq -c data/lab_data/Chow_Rep1.txt data/lab_data/Chow_Rep2.txt  data/lab_data/Chow_Rep3.txt \
@@ -120,6 +120,20 @@ pydeseq -c data/lab_data/Chow_Rep1.txt data/lab_data/Chow_Rep2.txt  data/lab_dat
 The input files include three replices of mouse with standard "chow" diet as control and three replicates of mouse with high fat diet ("HFD") as treatment. The gene_id and gene_name conversion file is GRCm38.75.gene_names stored in the same directory as input files. The p-value threshold is set at 0.05 and the output file directory is test/lab_data/. 
 
 See [/test/lab_data](https://github.com/shaniabuu/PyDESeq/tree/main/test/lab_data) for output with this command.
+
+- To test the package using [public data](https://github.com/shaniabuu/PyDESeq/tree/main/data/public_data):
+```
+cd PyDESeq
+pydeseq -c data/public_data/DOXY+_FUS-WT_REP1.txt data/public_data/DOXY+_FUS-WT_REP2.txt \
+  -t data/public_data/DOXY+_FUS-P525L_REP1.txt data/public_data/DOXY+_FUS-P525L_REP2.txt \
+  -g data/public_data/Human_gene_names.txt  -p 0.05 -o test/public_data/
+```
+```
+cd PyDESeq
+pydeseq -c data/public_data/DOXY-_FUS-WT_REP1.txt data/public_data/DOXY-_FUS-WT_REP2.txt \
+  -t data/public_data/DOXY-_FUS-P525L_REP1.txt data/public_data/DOXY-_FUS-P525L_REP2.txt \
+  -g data/public_data/Human_gene_names.txt  -p 0.05 -o test/public_data/
+```
 
 <a name="credit"></a>
 ## Contributors
