@@ -36,7 +36,7 @@ Note: if you do not have root access, you can run the command above with additio
 ```
 pip install . --user
 ```
-To run `pydeseq` sucessfully, you working directory should be in the PyDESeq directory, otherwise, you might need to add this directory to your PATH by running:
+To run `pydeseq` sucessfully, your working directory should be in the PyDESeq directory, otherwise, you might need to add this directory to your PATH by running:
 ```
 export PATH=$PATH:~/.local/bin
 ```
@@ -110,7 +110,7 @@ This image file is a volcano plot of the log2 fold changes vs. -log10(p-values).
 <a name="example"></a>
 ## Example and testing
 
-To test the package using lab data in [/data/lab_data](https://github.com/shaniabuu/PyDESeq/tree/main/data/lab_data):
+To test the package using [lab data](https://github.com/shaniabuu/PyDESeq/tree/main/data/lab_data):
 ```
 cd PyDESeq
 pydeseq -c data/lab_data/Chow_Rep1.txt data/lab_data/Chow_Rep2.txt  data/lab_data/Chow_Rep3.txt \
