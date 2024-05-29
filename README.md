@@ -67,22 +67,24 @@ Control and Treatment files that are used should contain just two tab-delimited 
 ```
 gene_id      FPKM
 ```
-column 1: `gene_id` stores the gene ids for the sequenced genes.
+- column 1: `gene_id` stores the gene ids for the sequenced genes.
 
-column 2: `FPKM` stores the FPKM (fragments per kilobase of transcript per million mapped reads) values of the sequenced genes.
+- column 2: `FPKM` stores the FPKM (fragments per kilobase of transcript per million mapped reads) values of the sequenced genes.
 
 Note: There should be two or more files for control and treatment files as replicates for the calculation of p-values.
+
+Note: The file should contain a header for proper use. 
 
 See text files in [/data/lab_data](https://github.com/shaniabuu/PyDESeq/tree/main/data/lab_data) for example.
 
 ### Gene name file
 The gene name file that is used should contain just two tab-delimited columns, the first for gene ids and the second for gene names:
-```
-gene_id      gene_names
-```
-column 1: `gene_id` that includes those in control and treatment files.
 
-column 2: `gene_names` for the readable gene names for each gene id.
+- column 1: `gene_id` that includes those in control and treatment files.
+
+- column 2: `gene_names` for the readable gene names for each gene id.
+
+Note: the file should not contain a header for proper use.
 
 See GRCm38.75.gene_names in [/data/lab_data](https://github.com/shaniabuu/PyDESeq/tree/main/data/lab_data) for example.
 
