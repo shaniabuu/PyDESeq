@@ -30,11 +30,11 @@ pip install --user pandas numpy scipy matplotlib
 ```
 git clone https://github.com/shaniabuu/PyDESeq.git
 cd PyDESeq
-pip install .
+pip install -e .
 ```
 Note: if you do not have root access, you can run the command above with additional options to install locally:
 ```
-pip install . --user
+pip install --user -e .
 ```
 To run `pydeseq` sucessfully, your working directory should be in the PyDESeq directory, otherwise, you might need to add this directory to your PATH by running:
 ```
@@ -44,7 +44,7 @@ Typing `pydeseq --help` should show a useful message and can be run to see if th
 
 <a name="usage"></a>
 ## Basic Usage
-The basic usage of `./pydeseq.py` to process control and treatment files to calculate differential gene expression is:
+The basic usage of `pydeseq` to process control and treatment files to calculate differential gene expression is:
 ```
 pydeseq [-h] -c {CONTROLS ...} -t {TREATMENTS ...} -g {GENE_NAME_FILE} -p {PVALUE_THRESHOLD} [-o {OUTPUT_DIR}]
 ```
