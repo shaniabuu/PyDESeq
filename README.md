@@ -3,7 +3,7 @@
 ## Introduction
 The goal of this project is to build a tool in Python that calculates the log2 fold change values and p-values from RESM and TPM results to perform differential expression analysis of two datasets, control vs. treatment. Additionally, the tool will generate a volcano plot for differential expression with log2 fold change values as the x-axis and the -log10 p-value as the y-axis and prints out the top 10 most differentially expressed genes. 
 
-[Prerequisites](#prerequisites) | [Install Instructions](#install) | [Basic Usage](#usage) | [pydeseq Options](#options) | [File formats](#format) | [Contributors](#credit)
+[Prerequisites](#prerequisites) | [Install Instructions](#install) | [Basic Usage](#usage) | [Input file format](#format) | [Output files](#output) | [Example and testing](#example) | [Contributors](#credit)
 <a name="prerequisites"></a>
 ## Prerequisites
 `pydeseq` requires:
@@ -107,7 +107,19 @@ column 3: `p-value` stores the p-value for each gene where the null hypothesis i
 #### `volcano_plot.png`
 This image file is a volcano plot of the log2 fold changes vs. -log10(p-values). Genes with p-values below the threshold are highlighted in red. The top 10 genes with the smallest non-zero p-values are labeled.
 
+<a name="example"></a>
+## Example and testing
 
+To test the package using lab data in [/data/lab_data](https://github.com/shaniabuu/PyDESeq/tree/main/data/lab_data):
+```
+cd PyDESeq
+pydeseq -c data/lab_data/Chow_Rep1.txt data/lab_data/Chow_Rep2.txt  data/lab_data/Chow_Rep3.txt \
+  -t data/lab_data/HFD_Rep1.txt data/lab_data/HFD_Rep2.txt data/lab_data/HFD_Rep3.txt \
+  -g data/lab_data/GRCm38.75.gene_names  -p 0.05 -o test/lab_data/
+```
+The input files include three replices of mouse with standard "chow" diet as control and three replicates of mouse with high fat diet ("HFD") as treatment. The gene_id and gene_name conversion file is GRCm38.75.gene_names stored in the same directory as input files. The p-value threshold is set at 0.05 and the output file directory is test/lab_data/. 
+
+See [/test/lab_data](https://github.com/shaniabuu/PyDESeq/tree/main/test/lab_data) for output with this command.
 
 <a name="credit"></a>
 ## Contributors
