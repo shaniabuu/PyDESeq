@@ -1,7 +1,7 @@
 # PyDESeq
 
 ## Introduction
-The goal of this project is to build a tool in Python that calculates the log2 fold change values and p-values from RESM and TPM results to perform differential expression analysis of two datasets, control vs. treatment. Additionally, the tool will generate a volcano plot for differential expression with log2 fold change values as the x-axis and the -log10 p-value as the y-axis and prints out the top 10 most differentially expressed genes. 
+PyDESeq is a package to process control and treatment files to calculate differential gene expression. It calculates the log2 fold change and p-values for each gene and generates a filtered volcano plot. The script requires control and treatment FPKM (Fragments Per Kilobase Million) files and a gene name file.
 
 [Prerequisites](#prerequisites) | [Install Instructions](#install) | [Basic Usage](#usage) | [Input file format](#format) | [Output files](#output) | [Example and testing](#example) | [Contributors](#credit)
 <a name="prerequisites"></a>
