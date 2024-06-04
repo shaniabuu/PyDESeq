@@ -127,14 +127,14 @@ See [/test/lab_data](https://github.com/shaniabuu/PyDESeq/tree/main/test/lab_dat
 ```
 cd PyDESeq
 pydeseq -c data/public_data/DOXY+_FUS-WT_REP1.txt data/public_data/DOXY+_FUS-WT_REP2.txt \
-  -t data/public_data/DOXY+_FUS-P525L_REP1.txt data/public_data/DOXY+_FUS-P525L_REP2.txt \
-  -g data/public_data/Human_gene_names.txt  -p 0.05 -o test/public_data/
+  -t data/public_data/DOXY+_FUS-WT_SGenr_REP1.txt data/public_data/DOXY+_FUS-WT_SGenr_REP2.txt \
+  -g data/public_data/Human_gene_names.txt  -p 0.05 -o test/public_WT/
 ```
 ```
 cd PyDESeq
-pydeseq -c data/public_data/DOXY-_FUS-WT_REP1.txt data/public_data/DOXY-_FUS-WT_REP2.txt \
-  -t data/public_data/DOXY-_FUS-P525L_REP1.txt data/public_data/DOXY-_FUS-P525L_REP2.txt \
-  -g data/public_data/Human_gene_names.txt  -p 0.05 -o test/public_data/
+pydeseq -c data/public_data/DOXY+_FUS-P525L_REP1.txt data/public_data/DOXY+_FUS-P525L_REP2.txt \
+  -t data/public_data/DOXY+_FUS-P525L_SGenr_REP1.txt data/public_data/DOXY+_FUS-P525L_SGenr_REP2.txt \
+  -g data/public_data/Human_gene_names.txt  -p 0.05 -o test/public_FUS/
 ```
 
 <a name="credit"></a>
