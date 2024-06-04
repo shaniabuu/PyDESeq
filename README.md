@@ -36,7 +36,7 @@ If you do not have root access, you can run the `pip install` command above with
 ```
 pip install --user -e .
 ```
-To run `pydeseq` sucessfully, your working directory should be in the PyDESeq directory, otherwise, you might need to add this directory to your PATH by running:
+To run `pydeseq` sucessfully, your working directory should be in the PyDESeq directory, otherwise, you might need to add this directory to your PATH. Note, this will have to be run again after opening a new terminal:
 ```
 export PATH=$PATH:~/.local/bin
 ```
