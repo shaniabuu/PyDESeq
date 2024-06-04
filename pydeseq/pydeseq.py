@@ -70,11 +70,6 @@ def main():
     t_stat, p_values = ttest_rel(all_ctrl_fpkm, all_treat_fpkm, axis=1)
     combined_df['pvalue'] = p_values
 
-    # Save output file
-    os.makedirs(args.output_dir, exist_ok=True)
-    output_file = os.path.join(args.output_dir, 'differential_expression_results.csv')
-    combined_df.to_csv(output_file, columns=['log2FoldChange', 'pvalue'])
-    
     # Join gene names
     combined_df = combined_df.join(gene_names, on='gene_id')
     combined_df_nonzero_pvalue = combined_df[combined_df['pvalue'] > 0].copy()
@@ -89,12 +84,20 @@ def main():
         (combined_df_nonzero_pvalue['-log10(pvalue)'] <= 9)
     ]
 
+    # Further filter for significant genes
+    significant_genes = filtered_combined_df_nonzero_pvalue[filtered_combined_df_nonzero_pvalue['pvalue'] < args.pvalue_threshold]
+
+    # Save significant genes to output file
+    os.makedirs(args.output_dir, exist_ok=True)
+    output_file = os.path.join(args.output_dir, 'differential_expression_results.csv')
+    significant_genes.to_csv(output_file, columns=['log2FoldChange', 'pvalue', 'gene_name'])
+
     # Print filtered top 10 genes with the smallest non-zero p-values
-    filtered_top_genes_nonzero_pvalue = filtered_combined_df_nonzero_pvalue.nsmallest(10, 'pvalue').reset_index(drop=True)
+    filtered_top_genes_nonzero_pvalue = significant_genes.nsmallest(10, 'pvalue').reset_index(drop=True)
     print(filtered_top_genes_nonzero_pvalue[['gene_name', 'log2FoldChange', 'pvalue']])
 
     # Print number of differentially expressed genes after filtering
-    num_filtered_diff_expr_genes = filtered_combined_df_nonzero_pvalue[filtered_combined_df_nonzero_pvalue['pvalue'] < args.pvalue_threshold].shape[0]
+    num_filtered_diff_expr_genes = significant_genes.shape[0]
     print(f"Number of differentially expressed genes after filtering (p-value < {args.pvalue_threshold}):", num_filtered_diff_expr_genes)
 
     # Create filtered volcano plot if p-value threshold is specified and p-value column exists
