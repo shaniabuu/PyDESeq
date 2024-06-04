@@ -8,7 +8,6 @@ import os
 import matplotlib.pyplot as plt
 import warnings
 
-print("a")
 # Suppress specific RuntimeWarning from scipy.stats
 warnings.filterwarnings("ignore", category=RuntimeWarning, message="Precision loss occurred in moment calculation due to catastrophic cancellation. This occurs when the data are nearly identical. Results may be unreliable.")
 
