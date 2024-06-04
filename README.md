@@ -98,9 +98,9 @@ See GRCm38.75.gene_names in [/data/lab_data](https://github.com/shaniabuu/PyDESe
 #### `differential_expression_results.csv`
 A comma-separated value (.csv) file with the differential expression analysis results stored in the following columns:
 ```
-gene_name      log2FoldChange    pvalue
+gene_id      log2FoldChange    pvalue
 ```
-column 1: `gene_name` stores the gene names for the identified differentially expressed genes.
+column 1: `gene_id` stores the gene IDs for the identified differentially expressed genes.
 
 column 2: `log2FoldChange` stores the values of the log2 fold change in expression of the gene between control(s) and treatment(s).
 
