@@ -94,8 +94,8 @@ def main():
     print(filtered_top_genes_nonzero_pvalue[['gene_name', 'log2FoldChange', 'pvalue']])
 
     # Print number of differentially expressed genes after filtering
-    num_filtered_diff_expr_genes = filtered_combined_df_nonzero_pvalue[filtered_combined_df_nonzero_pvalue['pvalue'] > args.pvalue_threshold].shape[0]
-    print(f"Number of differentially expressed genes after filtering (p-value > {args.pvalue_threshold}):", num_filtered_diff_expr_genes)
+    num_filtered_diff_expr_genes = filtered_combined_df_nonzero_pvalue[filtered_combined_df_nonzero_pvalue['pvalue'] < args.pvalue_threshold].shape[0]
+    print(f"Number of differentially expressed genes after filtering (p-value < {args.pvalue_threshold}):", num_filtered_diff_expr_genes)
 
     # Create filtered volcano plot if p-value threshold is specified and p-value column exists
     plt.scatter(filtered_combined_df_nonzero_pvalue['log2FoldChange'], filtered_combined_df_nonzero_pvalue['-log10(pvalue)'], color='black')
