@@ -2,7 +2,7 @@
 
 
 ## Introduction
-PyDESeq is a package to process control and treatment files to calculate <img src="./pydeseq_logo.png" height="165rm" align="right" />  differential gene expression. It calculates the log2 fold change and p-values for each gene and generates a filtered volcano plot. The script requires control and treatment FPKM (Fragments Per Kilobase Million) files and a gene name file.
+PyDESeq is a package to process control  <img src="./pydeseq_logo.png" height="165rm" align="right" /> and treatment files to calculate differential gene expression. It calculates the log2 fold change and p-values for each gene and generates a filtered volcano plot. The script requires control and treatment FPKM (Fragments Per Kilobase Million) files and a gene name file.
 
 [Prerequisites](#prerequisites) | [Install Instructions](#install) | [Basic Usage](#usage) | [Input file format](#format) | [Output files](#output) | [Example and testing](#example) | [Contributors](#credit) | [Supplemental information](#supplemental) 
 <a name="prerequisites"></a>
